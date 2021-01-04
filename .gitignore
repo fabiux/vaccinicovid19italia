@@ -1,0 +1,4 @@
+bin/
+csv/
+src/include/__pycache__/
+vaccini.db
