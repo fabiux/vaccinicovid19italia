@@ -153,3 +153,65 @@ class DB(object):
         except Exception as e:
             logger.error('DB.ds_forn_regione(): {}'.format(str(e)))
             return []
+
+    def eta(self):
+        """
+        Restituisce il dataset (label e dati) delle somministrazioni per fascia di eta`.
+        """
+        if self._conn is None:
+            return [], []
+
+        q = 'SELECT `eta`, `somministrazioni` FROM `eta` WHERE `tstamp` = ? ORDER BY `eta`'
+        labels = []
+        data = []
+        try:
+            res = self._conn.execute(q, (self._lasttime, ))
+            res = res.fetchall()
+            for item in res:
+                labels.append("'{}'".format(item[0]))
+                data.append(item[1])
+        except Exception as e:
+            logger.error('DB.eta(): {}'.format(str(e)))
+
+        return labels, data
+
+    def genere(self):
+        """
+        Restituisce il dataset del genere.
+        """
+        if self._conn is None:
+            return [], []
+
+        labels = ["'maschi'", "'femmine'"]
+        data = []
+        q = 'SELECT `maschi`, `femmine` FROM `genere` ORDER BY `tstamp` DESC LIMIT 1'
+        try:
+            res = self._conn.execute(q)
+            res = res.fetchone()
+            data.append(res[0])
+            data.append(res[1])
+        except Exception as e:
+            logger.error('DB.genere(): {}'.format(str(e)))
+
+        return labels, data
+
+    def categoria(self):
+        """
+        Restituisce il dataset (label e dati) delle somministrazioni per categoria.
+        """
+        if self._conn is None:
+            return [], []
+
+        q = 'SELECT `categoria`, `somministrazioni` FROM `categorie` WHERE `tstamp` = ? ORDER BY `categoria`'
+        labels = []
+        data = []
+        try:
+            res = self._conn.execute(q, (self._lasttime, ))
+            res = res.fetchall()
+            for item in res:
+                labels.append("'{}'".format(item[0]))
+                data.append(item[1])
+        except Exception as e:
+            logger.error('DB.categoria(): {}'.format(str(e)))
+
+        return labels, data

@@ -13,6 +13,9 @@
 <body>
     <header>Vaccinazioni Covid-19 in __REGIONE__
         <div class="comboregione dropdown">
+            <button class="dropbtn"><a href="categoria.html">categoria</a></button>
+            <button class="dropbtn"><a href="eta.html">età</a></button>
+            <button class="dropbtn"><a href="genere.html">genere</a></button>
             <button onclick="myFunction()" class="dropbtn">seleziona regione</button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="/">Italia</a>
@@ -48,6 +51,6 @@
     <script>
     __BODY__
     </script>
-    <footer>v. 0.1.2 - basato su dati liberati da <strong><a href="https://ondata.it/">onData</a></strong> con <a href="https://github.com/ondata/covid19italia/">questo progetto</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a></footer>
+    <footer>v. 0.1.3 - basato su dati liberati da <strong><a href="https://ondata.it/">onData</a></strong> con <a href="https://github.com/ondata/covid19italia/">questo progetto</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a></footer>
 </body>
 </html>

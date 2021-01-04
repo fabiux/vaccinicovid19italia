@@ -40,7 +40,7 @@ class DataSet(object):
 
 
 class ChartJS(object):
-    def __init__(self, element_id, mintime, maxtime, chart_type='line', chart_title=''):
+    def __init__(self, element_id, mintime, maxtime, chart_type='line', chart_title='', labels=[]):
         """
         :param element_id: DOM element id containing the chart
         :param mintime: starting date ('YYYY-MM-DD')
@@ -53,13 +53,16 @@ class ChartJS(object):
         self._chart_title = chart_title
         self._values = []
         self._dsets = []
-        self._labels = ['"{}"'.format(mintime)]
-        currtime = mintime
-        while currtime < maxtime:
-            d = datetime(int(currtime[:4]), int(currtime[5:7]), int(currtime[8:10]), 0, 0)
-            d = d + timedelta(days=1)
-            currtime = str(d)[:10]
-            self._labels.append('"{}"'.format(currtime))
+        if labels == []:
+            self._labels = ['"{}"'.format(mintime)]
+            currtime = mintime
+            while currtime < maxtime:
+                d = datetime(int(currtime[:4]), int(currtime[5:7]), int(currtime[8:10]), 0, 0)
+                d = d + timedelta(days=1)
+                currtime = str(d)[:10]
+                self._labels.append('"{}"'.format(currtime))
+        else:
+            self._labels = labels
 
     def add_dataset(self, data, varname, label, bgcolor, bordercolor, borderwidth=1, hidden=False):
         """
@@ -90,7 +93,6 @@ class ChartJS(object):
         s += "        datasets: [{}]\n".format(','.join(self._dsets))
         s += "    },\n"
         s += "    options: {\n"
-        # s += "        plugins: plugins,\n"
         s += "        responsive: true,\n"
         s += "        tooltips: {mode: 'index', intersect: false},\n"
         s += "        hover: {mode: 'nearest', intersect: true},\n"

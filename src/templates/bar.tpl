@@ -11,7 +11,7 @@
     <script src="js/Chart.min.js"></script>
 </head>
 <body>
-    <header>Vaccinazioni Covid-19 in Italia
+    <header>Vaccinazioni Covid-19 in Italia - __DATASEL__
         <div class="comboregione dropdown">
             <button class="dropbtn"><a href="categoria.html">categoria</a></button>
             <button class="dropbtn"><a href="eta.html">età</a></button>
