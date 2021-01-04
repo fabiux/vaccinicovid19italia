@@ -1,7 +1,7 @@
 """
 Generate static website.
 """
-from include.config import dbpath, tpldir, distdir
+from include.config import dbpath, tpldir, distdir, alpha
 from include.chartjs import ChartJS
 from sqlite3 import connect
 from shutil import copyfile
@@ -38,13 +38,13 @@ q = 'SELECT `somministrazioni` FROM `v_somm_day_italia` ORDER BY `tstamp`'
 dsres = conn.execute(q)
 dsres = dsres.fetchall()
 dsres = [item[0] for item in dsres]
-c.add_dataset(dsres, 'dosi', 'somministrazione', dict(r=0, g=127, b=0, a=0.2), dict(r=0, g=127, b=0, a=1.0))
+c.add_dataset(dsres, 'dosi', 'somministrazione', dict(r=0, g=127, b=0, a=alpha), dict(r=0, g=127, b=0, a=1.0))
 
 q = 'SELECT `dosi` FROM `v_dosi_day_italia` ORDER BY `tstamp`'
 dsres = conn.execute(q)
 dsres = dsres.fetchall()
 dsres = [item[0] for item in dsres]
-c.add_dataset(dsres, 'fornitura', 'fornitura', dict(r=127, g=0, b=0, a=0.2), dict(r=127, g=0, b=0, a=1.0), hidden=True)
+c.add_dataset(dsres, 'fornitura', 'fornitura', dict(r=127, g=0, b=0, a=alpha), dict(r=127, g=0, b=0, a=1.0), hidden=True)
 
 body = c.js
 
@@ -72,13 +72,13 @@ for row in res:
     dsres = conn.execute(q2, (_id, ))
     dsres = dsres.fetchall()
     dsres = [item[0] for item in dsres]
-    c.add_dataset(dsres, 'dosi', 'somministrazione', dict(r=0, g=127, b=0, a=0.2), dict(r=0, g=127, b=0, a=1.0))
+    c.add_dataset(dsres, 'dosi', 'somministrazione', dict(r=0, g=127, b=0, a=alpha), dict(r=0, g=127, b=0, a=1.0))
 
     q2 = 'SELECT `dosi` from `v_dosi_day` WHERE `id_regione` = ? ORDER BY `tstamp`'
     dsres = conn.execute(q2, (_id, ))
     dsres = dsres.fetchall()
     dsres = [item[0] for item in dsres]
-    c.add_dataset(dsres, 'fornitura', 'fornitura', dict(r=127, g=0, b=0, a=0.2), dict(r=127, g=0, b=0, a=1.0), hidden=True)
+    c.add_dataset(dsres, 'fornitura', 'fornitura', dict(r=127, g=0, b=0, a=alpha), dict(r=127, g=0, b=0, a=1.0), hidden=True)
 
     body = c.js
     htmlreg2 = htmlreg.replace('__BODY__', body).replace('__DC__', str(dc)).replace('__DS__', str(ds))
