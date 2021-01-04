@@ -2,12 +2,12 @@ body {color: #303030;}
 canvas {-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;}
 header {font-size: 200%; font-weight: bold;}
 footer {color: #808080; font-size: 80%; margin-top: 12px; padding-top: 12px; border-top: 1px solid #c0c0c0;}
-a {text-decoration: none; color: inherit; background-color: inherit;}
 .clear {clear: both;}
 .comboregione {float: right;}
 .summary {width: 100%;}
 /* dropdown menu */
 .dropbtn {background-color: #d0d0d0; padding: 12px; font-size: initial; border: none; cursor: pointer;}
+.dropbtn a {text-decoration: none; color: inherit; background-color: inherit;}
 .dropbtn:hover, .dropbtn:focus {background-color: #c0c0c0;}
 .dropdown {position: relative; display: inline-block;}
 .dropdown-content {display: none; position: absolute; background-color: #f1f1f1; min-width: 160px; overflow: auto; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; font-size: initial; font-weight: initial;}
