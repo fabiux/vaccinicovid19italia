@@ -10,6 +10,10 @@ Le pagine mostrano i grafici ([ChartJS](https://www.chartjs.org/)) dell'andament
 
 Il sito web risultante è visionabile [qui](https://vaccini.fabiopani.it/).
 
+## Configurazione
+
+Per le configurazioni preferite, vedere i file `import_csv.sh` e `include/config.py`.
+
 ## Licenza d’uso
 
 Vedere il file `LICENSE`.

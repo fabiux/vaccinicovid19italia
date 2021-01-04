@@ -48,6 +48,6 @@
     <script>
     __BODY__
     </script>
-    <footer>v. 0.1 - basato su dati liberati da <strong><a href="https://ondata.it/">onData</a></strong> con <a href="https://github.com/ondata/covid19italia/">questo progetto</a></footer>
+    <footer>v. 0.1 - basato su dati liberati da <strong><a href="https://ondata.it/">onData</a></strong> con <a href="https://github.com/ondata/covid19italia/">questo progetto</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a></footer>
 </body>
 </html>
