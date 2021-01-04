@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 
 class DataSet(object):
-    def __init__(self, varname, label, bgcolor, bordercolor, borderwidth=1):
+    def __init__(self, varname, label, bgcolor, bordercolor, borderwidth=1, hidden=False):
         """
         :param varname: name of javascript var name
         :param label: label for this data series
@@ -24,6 +24,7 @@ class DataSet(object):
         self._bgcolor = bgcolor
         self._bordercolor = bordercolor
         self._borderwidth = borderwidth
+        self._hidden = hidden
 
     @staticmethod
     def _rgba(color):
@@ -34,7 +35,8 @@ class DataSet(object):
         """
         Javascript equivalent for this data series.
         """
-        return "{" + "label: '{}', fill: false, data: {}, backgroundColor: {}, borderColor: {}, borderWidth: {}".format(self._label, self._varname, self._rgba(self._bgcolor), self._rgba(self._bordercolor), self._borderwidth) + "}"
+        hdn = 'hidden: true, ' if self._hidden else ''
+        return "{" + "label: '{}', {}fill: false, data: {}, backgroundColor: {}, borderColor: {}, borderWidth: {}".format(self._label, hdn, self._varname, self._rgba(self._bgcolor), self._rgba(self._bordercolor), self._borderwidth) + "}"
 
 
 class ChartJS(object):
@@ -59,7 +61,7 @@ class ChartJS(object):
             currtime = str(d)[:10]
             self._labels.append('"{}"'.format(currtime))
 
-    def add_dataset(self, data, varname, label, bgcolor, bordercolor, borderwidth=1):
+    def add_dataset(self, data, varname, label, bgcolor, bordercolor, borderwidth=1, hidden=False):
         """
         Adds a dataset to this chart.
         :param data (list): data value list
@@ -70,7 +72,7 @@ class ChartJS(object):
         :param borderwidth: border width
         """
         self._values.append(dict(varname=varname, data=data))
-        dset = DataSet(varname, label, bgcolor, bordercolor, borderwidth)
+        dset = DataSet(varname, label, bgcolor, bordercolor, borderwidth, hidden=hidden)
         self._dsets.append(dset.js)
 
     @property

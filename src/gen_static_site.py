@@ -32,12 +32,20 @@ with open(tpldir + 'regione.tpl', 'r') as f:
     htmlreg = f.read()
 
 # FIXME funzioni ad hoc
+c = ChartJS('mygraph', firstdate, lastdate, chart_title='')
+
 q = 'SELECT `somministrazioni` FROM `v_somm_day_italia` ORDER BY `tstamp`'
 dsres = conn.execute(q)
 dsres = dsres.fetchall()
 dsres = [item[0] for item in dsres]
-c = ChartJS('mygraph', firstdate, lastdate, chart_title='')
-c.add_dataset(dsres, 'dosi', 'dosi somministrate', dict(r=0, g=127, b=0, a=0.2), dict(r=0, g=127, b=0, a=1.0))
+c.add_dataset(dsres, 'dosi', 'somministrazione', dict(r=0, g=127, b=0, a=0.2), dict(r=0, g=127, b=0, a=1.0))
+
+q = 'SELECT `dosi` FROM `v_dosi_day_italia` ORDER BY `tstamp`'
+dsres = conn.execute(q)
+dsres = dsres.fetchall()
+dsres = [item[0] for item in dsres]
+c.add_dataset(dsres, 'fornitura', 'fornitura', dict(r=127, g=0, b=0, a=0.2), dict(r=127, g=0, b=0, a=1.0), hidden=True)
+
 body = c.js
 
 html = html.replace('__BODY__', body).replace('__DC__', str(dc)).replace('__DS__', str(ds))
@@ -58,12 +66,20 @@ for row in res:
     ds = res2[1]
     dperc = res2[2]
 
+    c = ChartJS('mygraph', firstdate, lastdate, chart_title='')
+
     q2 = 'SELECT `somministrazioni` from `v_somm_day` WHERE `id_regione` = ? ORDER BY `tstamp`'
     dsres = conn.execute(q2, (_id, ))
     dsres = dsres.fetchall()
     dsres = [item[0] for item in dsres]
-    c = ChartJS('mygraph', firstdate, lastdate, chart_title='')
-    c.add_dataset(dsres, 'dosi', 'dosi somministrate', dict(r=0, g=127, b=0, a=0.2), dict(r=0, g=127, b=0, a=1.0))
+    c.add_dataset(dsres, 'dosi', 'somministrazione', dict(r=0, g=127, b=0, a=0.2), dict(r=0, g=127, b=0, a=1.0))
+
+    q2 = 'SELECT `dosi` from `v_dosi_day` WHERE `id_regione` = ? ORDER BY `tstamp`'
+    dsres = conn.execute(q2, (_id, ))
+    dsres = dsres.fetchall()
+    dsres = [item[0] for item in dsres]
+    c.add_dataset(dsres, 'fornitura', 'fornitura', dict(r=127, g=0, b=0, a=0.2), dict(r=127, g=0, b=0, a=1.0), hidden=True)
+
     body = c.js
     htmlreg2 = htmlreg.replace('__BODY__', body).replace('__DC__', str(dc)).replace('__DS__', str(ds))
     htmlreg2 = htmlreg2.replace('__DPERC__', str(dperc)).replace('__LASTTIME__', lasttime).replace('__REGIONE__', regione)
