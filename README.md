@@ -14,8 +14,16 @@ Il sito web risultante è visionabile [qui](https://vaccini.fabiopani.it/).
 
 Per le configurazioni preferite, vedere i file `import_csv.sh` e `include/config.py`.
 
+Creare un database iniziale utilizzando gli script in `sql/`, come segue:
+
+```bash
+sqlite3 vaccini.db < vaccini.sql
+sqlite3 vaccini.db < views.sql
+```
+
 ## Licenza d’uso
 
 Vedere il file `LICENSE`.
 
 Per quanto riguarda l'utilizzo dei dati, si veda la licenza del [progetto di origine](https://github.com/ondata/covid19italia/).
+
