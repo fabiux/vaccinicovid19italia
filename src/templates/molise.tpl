@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>404 - Molise not found</title>
+    <title>404 - il Molise non esiste</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 </head>
