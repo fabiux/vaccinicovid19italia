@@ -81,4 +81,8 @@ for row in regioni:
 copyfile(tpldir + 'css/style.css', distdir + 'css/style.css')
 copyfile(tpldir + 'js/utils.js', distdir + 'js/utils.js')
 
+# easter egg
+html = read_template('molise')
+write_html('molise', html)
+
 logger.info('--- ENDED ---')

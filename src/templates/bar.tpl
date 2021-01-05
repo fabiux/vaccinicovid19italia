@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Vaccinazioni Covid-19 in Italia</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <script src="js/utils.js"></script>
     <script src="js/Chart.min.js"></script>
 </head>
