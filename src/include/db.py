@@ -215,3 +215,48 @@ class DB(object):
             logger.error('DB.categoria(): {}'.format(str(e)))
 
         return labels, data
+
+    def _forniture(self, tstamp):
+        """
+        Seleziona le forniture totali di vaccini per regione fino alla data specificata.
+        """
+        q = 'SELECT `area`, SUM(`dosi`) FROM cvl WHERE tstamp <= ? GROUP BY `area`'
+        res = self._conn.execute(q, (tstamp, ))
+        dosi = dict()
+        for item in res:
+            dosi[item[0]] = item[1]
+        return dosi
+
+    def init_hist(self, fromdate=None):
+        """
+        Inizializza la tabella della serie storica temporale `somministrazioni_hist`.
+        """
+        if self._conn is None:
+            return
+
+        r = dict()  # transcodifica codici regioni
+        q = 'SELECT `id`, `id_num` FROM `regioni_gov`'
+        res = self._conn.execute(q)
+        res = res.fetchall()
+        for item in res:
+            r[item['id']] = item['id_num']
+
+        somm = dict(ABR=0, BAS=0, CAL=0, CAM=0, EMR=0, FVG=0, LAZ=0, LIG=0, LOM=0, MAR=0, MOL=0, PAB=0, PAT=0, PIE=0,
+                    PUG=0, SAR=0, SIC=0, TOS=0, UMB=0, VDA=0, VEN=0)
+        prev_tstamp = ''
+        q = 'SELECT `tstamp`, `id_num`, `id_regione`, `totale` FROM `v_somministrazioni_area_gov` ORDER BY `tstamp`'
+        qins = 'INSERT INTO `somministrazioni_hist` VALUES (?, ?, ?, ?, ?)'
+        res = self._conn.execute(q)
+        res = res.fetchall()
+        for item in res:
+            tstamp = item[0]
+            if tstamp != prev_tstamp:
+                if prev_tstamp != '':
+                    # save current
+                    dosi = self._forniture(tstamp)
+                    for reg in somm.keys():
+                        pars = (tstamp, r[item[1]], dosi[item[2]], item[3], round(item[3] / dosi[item[2]] * 100.0, 1))
+                        self._conn.execute(qins, pars)
+                    self._conn.commit()
+                prev_tstamp = tstamp
+            somm[item[2]] += item[3]

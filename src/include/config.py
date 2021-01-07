@@ -8,6 +8,8 @@ csvdir = '/opt/vaccini/csv/'
 tpldir = '/opt/vaccini/app/templates/'
 distdir = '/opt/vaccini/dist/'
 dbpath = '/opt/vaccini/vaccini.db'
+ds_root_url = 'https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/'
+ds_files = ['consegne-vaccini-latest', 'somministrazioni-vaccini-latest']
 alpha = 0.1
 alphabar = 0.5
 

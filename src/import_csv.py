@@ -1,19 +1,10 @@
 """
 Import data from CSV files into SQLite database.
 """
-from include.config import csvdir, dbpath
+from include.config import dbpath
+from include.utils import read_csv
 from sqlite3 import connect
-from csv import DictReader
 from datetime import datetime
-
-
-def read_csv(filename):
-    """
-    Read csvfile and return FIXME.
-    """
-    with open(csvdir + filename, newline='') as f:
-        reader = DictReader(f)
-        return [row for row in reader]
 
 
 def tstamp(tstamp):
