@@ -9,5 +9,4 @@ wget https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/da
 sleep 2
 wget https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/consegne-vaccini-latest.csv > /dev/null 2>&1
 sleep 2
-/usr/bin/python3 /opt/vaccini/app/import_csv.py > /dev/null 2>&1
-/usr/bin/python3 /opt/vaccini/app/gen_static_site.py > /dev/null 2>&1
+/usr/bin/python3 /opt/vaccini/app/init_db.py > /dev/null 2>&1

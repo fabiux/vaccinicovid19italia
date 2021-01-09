@@ -13,44 +13,41 @@
 <body>
     <header>Vaccinazioni Covid-19 in Italia
         <div class="comboregione dropdown">
-            <button class="dropbtn"><a href="categoria.html">categoria</a></button>
-            <button class="dropbtn"><a href="eta.html">età</a></button>
-            <button class="dropbtn"><a href="genere.html">genere</a></button>
             <button onclick="myFunction()" class="dropbtn">seleziona regione</button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="/">Italia</a>
-                <a href="1.html">Piemonte</a>
-                <a href="2.html">Valle d'Aosta</a>
-                <a href="3.html">Lombardia</a>
-                <a href="5.html">Veneto</a>
-                <a href="6.html">Friuli-Venezia Giulia</a>
-                <a href="7.html">Liguria</a>
-                <a href="8.html">Emilia-Romagna</a>
-                <a href="9.html">Toscana</a>
-                <a href="10.html">Marche</a>
-                <a href="11.html">Umbria</a>
-                <a href="12.html">Lazio</a>
-                <a href="13.html">Abruzzo</a>
-                <a href="14.html">Molise</a>
-                <a href="15.html">Campania</a>
-                <a href="16.html">Puglia</a>
-                <a href="17.html">Basilicata</a>
-                <a href="18.html">Calabria</a>
-                <a href="19.html">Sicilia</a>
-                <a href="20.html">Sardegna</a>
-                <a href="21.html">P. A. Bolzano</a>
-                <a href="22.html">P. A. Trento</a>
+                <a href="pie.html">Piemonte</a>
+                <a href="vda.html">Valle d'Aosta</a>
+                <a href="lom.html">Lombardia</a>
+                <a href="ven.html">Veneto</a>
+                <a href="fvg.html">Friuli-Venezia Giulia</a>
+                <a href="lig.html">Liguria</a>
+                <a href="emr.html">Emilia-Romagna</a>
+                <a href="tos.html">Toscana</a>
+                <a href="mar.html">Marche</a>
+                <a href="umb.html">Umbria</a>
+                <a href="laz.html">Lazio</a>
+                <a href="abr.html">Abruzzo</a>
+                <a href="mol.html">Molise</a>
+                <a href="cam.html">Campania</a>
+                <a href="pug.html">Puglia</a>
+                <a href="bas.html">Basilicata</a>
+                <a href="cal.html">Calabria</a>
+                <a href="sic.html">Sicilia</a>
+                <a href="sar.html">Sardegna</a>
+                <a href="pab.html">P. A. Bolzano</a>
+                <a href="pat.html">P. A. Trento</a>
             </div>
         </div>
     </header>
     <div class="clear"></div>
-    <div class="summary">dosi: consegnate <strong>__DC__</strong> | somministrate <strong>__DS__</strong> (__DPERC__%) - aggiornamento: __LASTTIME__</div>
+    <div class="summary">dosi: consegnate <strong>__DC__</strong> | somministrate <strong>__DS__</strong> (__DPERC__%)</div>
     <div style="width:100%;height:100%;">
 		<canvas id="mygraph"></canvas>
     </div>
     <script>
     __BODY__
     </script>
-    <footer>v. 0.1.3 - basato su dati liberati da <strong><a href="https://ondata.it/">onData</a></strong> con <a href="https://github.com/ondata/covid19italia/">questo progetto</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a></footer>
+    <footer>v. 0.2 - basato su dati aperti forniti dal Governo e disponibili <a href="https://github.com/italia/covid19-opendata-vaccini">qui</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a></footer>
 </body>
 </html>

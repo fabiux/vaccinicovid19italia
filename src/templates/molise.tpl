@@ -16,6 +16,6 @@
         <!-- <div class="clear"></div> -->
         <div class="cntcenter">Molise not found</div>
     </header>
-    <footer><div class="cntcenter">v. 0.1.3 - basato su dati liberati da <strong><a href="https://ondata.it/">onData</a></strong> con <a href="https://github.com/ondata/covid19italia/">questo progetto</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a><br /><strong><a href="/">HOME</a></strong></div></footer>
+    <footer>v. 0.2 - basato su dati aperti forniti dal Governo e disponibili <a href="https://github.com/italia/covid19-opendata-vaccini">qui</a> - pagine aggiornate automaticamente - <a href="https://github.com/fabiux/vaccinicovid19italia">fork me on Github!</a></footer>
 </body>
 </html>

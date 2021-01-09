@@ -12,6 +12,8 @@ ds_root_url = 'https://raw.githubusercontent.com/italia/covid19-opendata-vaccini
 ds_files = ['consegne-vaccini-latest', 'somministrazioni-vaccini-latest']
 alpha = 0.1
 alphabar = 0.5
+regcodes = ['ABR', 'BAS', 'CAL', 'CAM', 'EMR', 'FVG', 'LAZ', 'LIG', 'LOM', 'MAR', 'MOL', 'PAB', 'PAT', 'PIE', 'PUG',
+            'SAR', 'SIC', 'TOS', 'UMB', 'VDA', 'VEN']
 
 # logging
 logname = 'vaccini'

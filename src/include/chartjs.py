@@ -36,7 +36,7 @@ class DataSet(object):
         Javascript equivalent for this data series.
         """
         hdn = 'hidden: true, ' if self._hidden else ''
-        return "{" + "label: '{}', {}fill: true, data: {}, backgroundColor: {}, borderColor: {}, borderWidth: {}".format(self._label, hdn, self._varname, self._rgba(self._bgcolor), self._rgba(self._bordercolor), self._borderwidth) + "}"
+        return "{" + "label: '{}', {}fill: true, lineTension: 0, data: {}, backgroundColor: {}, borderColor: {}, borderWidth: {}".format(self._label, hdn, self._varname, self._rgba(self._bgcolor), self._rgba(self._bordercolor), self._borderwidth) + "}"
 
 
 class ChartJS(object):
