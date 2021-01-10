@@ -168,6 +168,13 @@ class DB(object):
             logger.error('DB._fornitura(): {}'.format(str(e)))
             return 0
 
+    def _somm_regione(self, tstamp, reg):
+        q = 'SELECT MAX(`somministrazioni`) AS `somm` FROM `somministrazioni` '
+        q += 'WHERE (`tstamp` < ?) AND (`regione` = ?) '
+        res = self._conn.execute(q, (tstamp, reg))
+        res = res.fetchone()
+        return 0 if res is None else int(res[0])
+
     def _fix_somministrazioni(self, startdate='2020-12-27'):
         """
         Riempie possibili buchi della tabella `somministrazioni`.
@@ -181,13 +188,6 @@ class DB(object):
             res = res.fetchall()
             return [item[0] for item in res]
 
-        def somm_regione(tstamp, reg):
-            q = 'SELECT MAX(`somministrazioni`) AS `somm` FROM `somministrazioni` '
-            q += 'WHERE (`tstamp` < ?) AND (`regione` = ?) '
-            res = self._conn.execute(q, (tstamp, reg))
-            res = res.fetchone()
-            return res[0]
-
         def update_somm_regione(tstamp, reg, value):
             q = 'INSERT INTO `somministrazioni` (`tstamp`, `regione`, `somministrazioni`) VALUES (?, ?, ?)'
             self._conn.execute(q, (tstamp, reg, value))
@@ -198,7 +198,7 @@ class DB(object):
             sr = set_regioni(currdate)
             for reg in regcodes:
                 if reg not in sr:
-                    somm = 0 if currdate == '2020-12-27' else somm_regione(currdate, reg)
+                    somm = 0 if currdate == '2020-12-27' else self._somm_regione(currdate, reg)
                     update_somm_regione(currdate, reg, somm)
             currdate = self._next_tstamp(currdate)
         self._conn.commit()
@@ -266,15 +266,17 @@ class DB(object):
         if self._conn is None:
             return
 
-        yesterday = str(datetime.now() + timedelta(days=1))[:10]
+        yesterday = str(datetime.now() - timedelta(days=1))[:10]
 
         q = 'INSERT OR REPLACE INTO `somministrazioni` VALUES (?, ?, ?, ?)'
         rows = read_csv('somministrazioni-vaccini-summary-latest.csv')
         try:
             for row in rows:
+                if row['area'] == 'ITA':
+                    continue
                 if row['data_somministrazione'] >= yesterday:
                     pars = (row['data_somministrazione'], row['area'], self._fornitura(row['data_somministrazione'], row['area']),
-                            row['totale'])
+                            int(row['totale']) + self._somm_regione(row['data_somministrazione'], row['area']))
                     self._conn.execute(q, pars)
             self._fix_somministrazioni(startdate=yesterday)
             self._conn.commit()
